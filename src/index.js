@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "Library",
+    }
+  }
+
+  render() {
+    const title = this.state.title;
+    return (
+      <div id="header">
+        <h1>{title}</h1>
+      </div>
+    )
+  }
+}
+
 class Container extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +38,9 @@ class Container extends React.Component {
 };
 
 ReactDOM.render(
-  <Container />,
+  <div>
+    <Header />
+    <Container />
+  </div>,
   document.getElementById('content')
 );
