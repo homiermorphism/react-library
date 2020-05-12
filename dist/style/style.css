@@ -14,5 +14,15 @@ body::after {
 #header {
   display: flex;
   justify-content: center;
-  background-color: blue;
+  background-color: #f5f0e1;
+}
+
+#footer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #f5f0e1;
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  width: 100%;
 }

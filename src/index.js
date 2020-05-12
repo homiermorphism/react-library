@@ -17,7 +17,7 @@ class Header extends React.Component {
       </div>
     )
   }
-}
+};
 
 class Container extends React.Component {
   constructor(props) {
@@ -37,10 +37,29 @@ class Container extends React.Component {
   }
 };
 
+class Footer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: 'https://github.com/homiermorphism',
+    }
+  }
+
+  render() {
+    const url = this.state.url;
+    return (
+      <div id="footer">
+        <a href={url}>made by homiermorphism</a>
+      </div>
+    )
+  }
+}
+
 ReactDOM.render(
   <div>
     <Header />
     <Container />
+    <Footer />
   </div>,
   document.getElementById('content')
 );
