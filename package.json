@@ -1,0 +1,37 @@
+{
+  "name": "react-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "export BABEL_ENV='development' && webpack-dev-server --mode development --open --hot && unset BABEL_ENV",
+    "build": "export BABEL_ENV='production' && webpack --mode production && unset BABEL_ENV"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homiermorphism/react-library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/homiermorphism/react-library/issues"
+  },
+  "homepage": "https://github.com/homiermorphism/react-library#readme",
+  "dependencies": {
+    "ace-builds": "^1.4.8",
+    "js-base64": "^2.5.2",
+    "react": "^16.13.0",
+    "react-ace": "^8.0.0",
+    "react-dom": "^16.13.0",
+    "react-pdf": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
