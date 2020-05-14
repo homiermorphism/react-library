@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Card } from './cards';
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -23,15 +25,28 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: 'hi',
+      books: [
+        {
+          title: "The Hobbit",
+          author: "J.R.R. Tolkien",
+          year: "early as fuck",
+        },
+        {
+          title: "The Cat In The Hat",
+          author: "Dr. Suess",
+          year: "70's",
+        },
+      ],
     }
   }
 
   render() {
-    const message = this.state.message;
+    const books = this.state.books;
     return (
       <div>
-        {message}
+        <ul>
+          {books.map((book) => <Card key={book.title} author={book.author} year={book.year}/>)}
+        </ul>
       </div>
     );
   }
@@ -53,7 +68,7 @@ class Footer extends React.Component {
       </div>
     )
   }
-}
+};
 
 ReactDOM.render(
   <div>
