@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactModal from 'react-modal';
 
 import { Card } from './cards';
+import { Form } from './form';
 
 class Header extends React.Component {
   constructor(props) {
@@ -37,13 +39,36 @@ class Container extends React.Component {
           year: "70's",
         },
       ],
+      showModal: false
     }
+
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
   }
 
   render() {
     const books = this.state.books;
     return (
       <div>
+        <button id="add-book" onClick={this.handleOpenModal}>
+          Add Book
+        </button>
+        <ReactModal
+           isOpen={this.state.showModal}
+        >
+          <Form />
+          <button id="close-modal" onClick={this.handleCloseModal}>
+            Close Form
+          </button>
+        </ReactModal>
         <ul>
           {books.map((book) => <Card key={book.title} author={book.author} year={book.year}/>)}
         </ul>
