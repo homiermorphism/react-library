@@ -27,11 +27,25 @@ class Form extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+    const { title, author, year } = this.state;
+    const book = {
+      title: title,
+      author: author,
+      year: year,
+    }
+    if (book.title==="" || book.author==="") {
+      alert("Title and author are both required.");
+      return;
+    } else {
+      this.props.addBook( book );
+      this.props.closeForm();
+    }
   }
 
   render() {
+    console.log(this.state);
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
+import Modal from 'react-modal';
 
 import { Card } from './cards';
 import { Form } from './form';
@@ -23,6 +24,7 @@ class Header extends React.Component {
   }
 };
 
+
 class Container extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,7 @@ class Container extends React.Component {
         {
           title: "The Hobbit",
           author: "J.R.R. Tolkien",
-          year: "early as fuck",
+          year: "1937",
         },
         {
           title: "The Cat In The Hat",
@@ -44,6 +46,9 @@ class Container extends React.Component {
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.updateBooks = this.updateBooks.bind(this);
+
+    Modal.setAppElement('#content');
   }
 
   handleOpenModal () {
@@ -52,6 +57,12 @@ class Container extends React.Component {
 
   handleCloseModal () {
     this.setState({ showModal: false });
+  }
+
+  updateBooks(book) {
+    const { books } = this.state;
+    const updatedBooks = [...books, book];
+    this.setState({ books: updatedBooks });
   }
 
   render() {
@@ -64,13 +75,22 @@ class Container extends React.Component {
         <ReactModal
            isOpen={this.state.showModal}
         >
-          <Form />
+          <Form
+            addBook={this.updateBooks}
+            closeForm={this.handleCloseModal}
+          />
           <button id="close-modal" onClick={this.handleCloseModal}>
             Close Form
           </button>
         </ReactModal>
         <ul>
-          {books.map((book) => <Card key={book.title} author={book.author} year={book.year}/>)}
+          {books.map((book) =>
+            <Card
+              key={book.title}
+              title={book.title}
+              author={book.author}
+              year={book.year}
+            />)}
         </ul>
       </div>
     );
