@@ -35,18 +35,13 @@ class Container extends React.Component {
           author: "J.R.R. Tolkien",
           year: "1937",
         },
-        {
-          title: "The Cat In The Hat",
-          author: "Dr. Suess",
-          year: "70's",
-        },
       ],
-      showModal: false
+      showModal: false,
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.updateBooks = this.updateBooks.bind(this);
+    this.addBook = this.addBook.bind(this);
 
     Modal.setAppElement('#content');
   }
@@ -59,14 +54,16 @@ class Container extends React.Component {
     this.setState({ showModal: false });
   }
 
-  updateBooks(book) {
+  // add the info from the form to the books array in the state
+  addBook(book) {
     const { books } = this.state;
     const updatedBooks = [...books, book];
     this.setState({ books: updatedBooks });
   }
 
   render() {
-    const books = this.state.books;
+    const { books } = this.state;
+
     return (
       <div>
         <button id="add-book" onClick={this.handleOpenModal}>
@@ -76,12 +73,9 @@ class Container extends React.Component {
            isOpen={this.state.showModal}
         >
           <Form
-            addBook={this.updateBooks}
+            addBook={this.addBook}
             closeForm={this.handleCloseModal}
           />
-          <button id="close-modal" onClick={this.handleCloseModal}>
-            Close Form
-          </button>
         </ReactModal>
         <ul>
           {books.map((book) =>

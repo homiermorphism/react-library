@@ -17,11 +17,12 @@ class Form extends React.Component {
   }
 
   handleChange(event) {
-    if (event.target.id === "title") {
+    const id = event.target.id;
+    if (id === "title") {
       this.setState({ title: event.target.value });
-    } else if (event.target.id === "author") {
+    } else if (id === "author") {
       this.setState({ author: event.target.value });
-    } else if (event.target.id === "year") {
+    } else if (id === "year") {
       this.setState({ year: event.target.value });
     }
   }
@@ -33,7 +34,7 @@ class Form extends React.Component {
       title: title,
       author: author,
       year: year,
-    }
+    };
     if (book.title==="" || book.author==="") {
       alert("Title and author are both required.");
       return;
@@ -44,23 +45,42 @@ class Form extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Title:
-          <input type="text" id="title" value={this.state.title} onChange={this.handleChange} />
+          <input
+            type="text"
+            id="title"
+            value={this.state.title}
+            onChange={this.handleChange}
+            placeholder="Enter title"
+          />
         </label>
         <label>
           Author:
-          <input type="text" id="author" value={this.state.author} onChange={this.handleChange} />
+          <input
+            type="text"
+            id="author"
+            value={this.state.author}
+            onChange={this.handleChange}
+            placeholder="Enter author"
+          />
         </label>
         <label>
           Year:
-          <input type="text" id="year" value={this.state.year} onChange={this.handleChange} />
+          <input
+            type="text"
+            id="year"
+            value={this.state.year}
+            onChange={this.handleChange}
+            placeholder="Enter year"
+          />
         </label>
         <input type="submit" value="Submit" />
+        <button id="close-modal" onClick={this.props.closeForm}>
+          Close Form
+        </button>
       </form>
     );
   }
