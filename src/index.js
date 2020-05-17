@@ -42,6 +42,7 @@ class Container extends React.Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.addBook = this.addBook.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
 
     Modal.setAppElement('#content');
   }
@@ -59,6 +60,17 @@ class Container extends React.Component {
     const { books } = this.state;
     const updatedBooks = [...books, book];
     this.setState({ books: updatedBooks });
+  }
+  
+  deleteBook( book ) {
+    const { books } = this.state;
+    var booksToKeep = [];
+    for (var i=0; i<books.length; i++) {
+      if (books[i].title != book.title) {
+        booksToKeep.push(books[i]);
+      }
+    };
+    this.setState({ books: booksToKeep });
   }
 
   render() {
@@ -81,9 +93,11 @@ class Container extends React.Component {
           {books.map((book) =>
             <Card
               key={book.title}
+              book={book}
               title={book.title}
               author={book.author}
               year={book.year}
+              deleteBook={this.deleteBook}
             />)}
         </ul>
       </div>
