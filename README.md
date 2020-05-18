@@ -16,8 +16,10 @@ Uses the following:
 
 1. Edit a book
 
-2. Delete a book
+2. Delete a book (done)
 
 3. Styling
 
 4. More form options (read/in progress/unread, rating, etc.)
+
+5. Sorting
