@@ -34,9 +34,11 @@ class Container extends React.Component {
           title: "The Hobbit",
           author: "J.R.R. Tolkien",
           year: "1937",
+          id: 0,
         },
       ],
       showModal: false,
+      lastID: 0,
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -57,16 +59,19 @@ class Container extends React.Component {
 
   // add the info from the form to the books array in the state
   addBook(book) {
-    const { books } = this.state;
+    const { books, lastID } = this.state;
+    const newID = lastID + 1;
+    book.id = newID;
     const updatedBooks = [...books, book];
-    this.setState({ books: updatedBooks });
+    this.setState({ books: updatedBooks, lastID: newID });
   }
-  
+
   deleteBook( book ) {
     const { books } = this.state;
     var booksToKeep = [];
+
     for (var i=0; i<books.length; i++) {
-      if (books[i].title != book.title) {
+      if (books[i].id != book.id) {
         booksToKeep.push(books[i]);
       }
     };
@@ -75,6 +80,7 @@ class Container extends React.Component {
 
   render() {
     const { books } = this.state;
+    console.log(this.state);
 
     return (
       <div>
@@ -92,8 +98,8 @@ class Container extends React.Component {
         <ul>
           {books.map((book) =>
             <Card
-              key={book.title}
-              book={book}
+              key={book.id}
+              id={book.id}
               title={book.title}
               author={book.author}
               year={book.year}

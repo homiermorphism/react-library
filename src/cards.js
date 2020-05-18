@@ -12,6 +12,7 @@ class Card extends React.Component {
 
   deleteBook() {
     const book = {
+      id: this.props.id,
       title: this.props.title,
       author: this.props.author,
       year: this.props.year,
