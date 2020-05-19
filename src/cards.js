@@ -7,6 +7,10 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      showModal: false,
+    }
+
     this.deleteBook = this.deleteBook.bind(this);
   }
 
@@ -21,16 +25,31 @@ class Card extends React.Component {
   }
 
   render() {
+    const cardStyle = {
+      backgroundColor: "var(--dark-green)",
+      boxShadow: "0 7px 20px 1px rgba(100, 28, 2, 0.5)",
+      overflow: "scroll",
+      padding: "20px",
+      color: "var(--beige)",
+      outline: "2px solid " + this.props.color,
+      outlineOffset: "-8px",
+      margin: "10px",
+    };
+
+    const buttonStyle = {
+      backgroundColor: this.props.color,
+      border: "2px solid " + this.props.color,
+    }
+
     return (
-      <div className="card">
-        <h1> Book </h1>
+      <div id={this.props.id} style={cardStyle}>
+        <h2 id={"title"+this.props.id}>{this.props.title}</h2>
         <ul>
-          <li id="title">title: {this.props.title}</li>
-          <li id="author">author: {this.props.author}</li>
-          <li id="year">year: {this.props.year}</li>
+          <li id={"author"+this.props.id}>author: {this.props.author}</li>
+          <li id={"year"+this.props.id}>year: {this.props.year}</li>
         </ul>
-        <button onClick={this.deleteBook}>
-          Delete
+        <button className="card-btn" style={buttonStyle} onClick={this.deleteBook}>
+          <i className="material-icons md-18">delete</i>
         </button>
       </div>
     );

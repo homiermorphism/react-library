@@ -24,7 +24,6 @@ class Header extends React.Component {
   }
 };
 
-
 class Container extends React.Component {
   constructor(props) {
     super(props);
@@ -34,11 +33,26 @@ class Container extends React.Component {
           title: "The Hobbit",
           author: "J.R.R. Tolkien",
           year: "1937",
-          id: 0,
+          id: 1,
+          color: "var(--light-blue)",
+        },
+        {
+          title: "How To Kill a Mockingbird",
+          author: "Harper Lee",
+          year: "1960",
+          id: 2,
+          color: "var(--orange)",
+        },
+        {
+          title: "The Tortilla Curtain",
+          author: "T.C. Boyle",
+          year: "1995",
+          id: 3,
+          color: "var(--light-green)",
         },
       ],
       showModal: false,
-      lastID: 0,
+      lastID: 3,
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -58,11 +72,26 @@ class Container extends React.Component {
   }
 
   // add the info from the form to the books array in the state
-  addBook(book) {
+  addBook( book ) {
     const { books, lastID } = this.state;
     const newID = lastID + 1;
     book.id = newID;
-    const updatedBooks = [...books, book];
+    let updatedBooks = [...books, book];
+    const colors = {
+      orange: "var(--orange)",
+      blue: "var(--light-blue)",
+      green: "var(--light-green)",
+    }
+    updatedBooks.forEach((book) => {
+      let i = updatedBooks.indexOf(book);
+      if (i % 3 === 0) {
+        book.color = colors.blue;
+      } else if (i % 3 === 1) {
+        book.color = colors.orange;
+      } else if (i % 3 === 2) {
+        book.color = colors.green;
+      }
+    });
     this.setState({ books: updatedBooks, lastID: newID });
   }
 
@@ -80,12 +109,11 @@ class Container extends React.Component {
 
   render() {
     const { books } = this.state;
-    console.log(this.state);
 
     return (
       <div>
-        <button id="add-book" onClick={this.handleOpenModal}>
-          Add Book
+        <button className="add-btn" onClick={this.handleOpenModal}>
+          <i className="material-icons">add_circle_outline</i>
         </button>
         <ReactModal
            isOpen={this.state.showModal}
@@ -95,11 +123,12 @@ class Container extends React.Component {
             closeForm={this.handleCloseModal}
           />
         </ReactModal>
-        <ul>
+        <ul className="card-container">
           {books.map((book) =>
             <Card
               key={book.id}
               id={book.id}
+              color={book.color}
               title={book.title}
               author={book.author}
               year={book.year}

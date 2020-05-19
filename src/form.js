@@ -46,7 +46,10 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
+      <button className="close-btn" onClick={this.props.closeForm}>
+        <i className="material-icons">cancel</i>
+      </button>
         <label>
           Title:
           <input
@@ -77,9 +80,8 @@ class Form extends React.Component {
             placeholder="Enter year"
           />
         </label>
-        <input type="submit" value="Submit" />
-        <button id="close-modal" onClick={this.props.closeForm}>
-          Close Form
+        <button className="submit-btn" onClick={this.handleSubmit}>
+          <i className="material-icons">save</i>
         </button>
       </form>
     );

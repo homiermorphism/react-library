@@ -1,3 +1,14 @@
+:root {
+  --beige: #fcfaee;
+  --orange: #c45528;
+  --light-blue: #7ab2e2;
+  --light-blue-opaque: rgba(122,178,226,0.65);
+  --dark-green: #4e7361;
+  --light-green: #a09f11;
+  --light-green-opaque: rgba(160,159,17,0.5);
+  --brown: #5f4a11;
+}
+
 body::after {
   content: "";
   background: url('../images/bg-image.jpg');
@@ -14,15 +25,41 @@ body::after {
 #header {
   display: flex;
   justify-content: center;
-  background-color: #f5f0e1;
+  color: var(--beige);
+  background-color: var(--dark-green);
+  outline: 3px solid var(--beige);
+  outline-offset: -10px;
+  font-family: 'Satisfy', cursive;
+  font-size: 120%;
 }
 
 #footer {
   display: flex;
   justify-content: flex-end;
-  background-color: #f5f0e1;
+  color: white;
+  background-color: var(--dark-green);
   position: absolute;
   bottom: 5px;
   right: 0;
   width: 100%;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+}
+
+[class*="btn"] {
+  border-radius: 50%;
+	width: 40px;
+	height: 40px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--brown);
+  border: 2px solid var(--brown);
+}
+
+[class*="btn"]:hover {
+  cursor: pointer;
+  box-shadow: 0 7px 20px 1px rgba(100, 28, 2, 0.5);
 }
