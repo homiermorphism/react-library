@@ -50,9 +50,16 @@ class Container extends React.Component {
           id: 3,
           color: "var(--orange)",
         },
+        {
+          title: "Ender's Game",
+          author: "Orson Scott Card",
+          year: "1985",
+          id: 4,
+          color: "var(--light-blue)"
+        },
       ],
       showModal: false,
-      lastID: 3,
+      lastID: 4,
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -99,6 +106,7 @@ class Container extends React.Component {
     this.setState({ books: this.setColor( updatedBooks ), lastID: newID });
   }
 
+  // delete the book from the container
   deleteBook( book ) {
     const { books } = this.state;
     var booksToKeep = [];
@@ -123,6 +131,7 @@ class Container extends React.Component {
         </div>
         <ReactModal
            isOpen={this.state.showModal}
+           className="modal-form"
         >
           <Form
             addBook={this.addBook}

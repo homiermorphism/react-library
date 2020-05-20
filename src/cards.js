@@ -7,10 +7,6 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      showModal: false,
-    }
-
     this.deleteBook = this.deleteBook.bind(this);
   }
 
@@ -26,13 +22,12 @@ class Card extends React.Component {
 
   render() {
     const cardStyle = {
-      backgroundColor: "var(--light-brown)",
-      boxShadow: "0 7px 20px 1px rgba(100, 28, 2, 0.1)",
+      backgroundColor: "var(--beige)",
+      boxShadow: "0 0 20px 2px rgba(100, 28, 2, 0.15)",
       overflow: "scroll",
       padding: "20px",
       outline: "3px solid " + this.props.color,
       outlineOffset: "-8px",
-      margin: "10px",
       height: "200px",
       fontFamily: "'Slabo 27px', serif",
       position: "relative",
@@ -47,7 +42,9 @@ class Card extends React.Component {
     };
 
     const listStyle = {
-      color: "var(--beige)",
+      color: "var(--brown)",
+      marginLeft: "-20px",
+      listStyleType: "none",
     }
 
     const buttonStyle = {
@@ -63,8 +60,8 @@ class Card extends React.Component {
         <h2 id={"title"+this.props.id} style={titleStyle}>{this.props.title}</h2>
         <hr style={lineStyle}></hr>
         <ul style={listStyle}>
-          <li id={"author"+this.props.id}>author: {this.props.author}</li>
-          <li id={"year"+this.props.id}>year: {this.props.year}</li>
+          <li id={"author"+this.props.id}><b>Written By</b> {this.props.author}</li>
+          <li id={"year"+this.props.id}><b>In The Year</b> {this.props.year}</li>
         </ul>
         <button className="card-btn" style={buttonStyle} onClick={this.deleteBook}>
           <i className="material-icons md-18">delete</i>

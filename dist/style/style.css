@@ -8,8 +8,7 @@
   --light-green: #a09f11;
   --light-green-opaque: rgba(160,159,17,0.5);
   --brown: #5f4a11;
-  --brown-opaque: rgba(95,74,17, 0.2);
-  --light-brown: #654321;
+  --brown-opaque: rgba(95,74,17, 0.3);
 }
 
 body::after {
@@ -42,7 +41,7 @@ body::after {
   justify-content: flex-end;
   color: white;
   background-color: var(--dark-green);
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   width: 100%;
@@ -61,17 +60,17 @@ body::after {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(4, 20%);
+  grid-template-columns: repeat(4, 300px);
   grid-gap: 25px;
   position: absolute;
   overflow: auto;
-  height: auto;
-  max-height: 70vh;
+  max-height: 65vh;
   overflow-x: scroll;
   overflow-y: scroll;
   padding: 2%;
   border-radius: 10px;
   width: 95vw;
+  justify-content: center;
 }
 
 [class*="btn"] {
@@ -86,7 +85,6 @@ body::after {
 
 [class*="btn"]:hover {
   cursor: pointer;
-  box-shadow: 0 5px 20px 2px var(--brown-opaque);
 }
 
 .material-icons {
@@ -98,9 +96,29 @@ body::after {
 }
 
 .card-btn:hover {
-  box-shadow: 0 0 20px 2px var(--beige-opaque);
+  box-shadow: 0 0 20px 2px var(--brown-opaque);
 }
 
-ul {
-  list-style: none;
+.modal-form {
+  outline: none;
+}
+
+.form {
+  margin: 20vh 20vw;
+  text-align: center;
+  background-color: var(--beige);
+  outline: 5px solid var(--brown);
+  outline-offset: -10px;
+  padding: 20px;
+  box-shadow: 0 7px 20px 1px rgba(95,74,17,0.25);
+  font-family: 'Slabo 27px', serif;
+}
+
+input[type="text"] {
+  padding: 5px;
+  margin: 10px;
+}
+
+.submit-btn {
+  margin: auto;
 }

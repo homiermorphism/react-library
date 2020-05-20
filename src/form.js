@@ -46,40 +46,43 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form>
-      <button className="close-btn" onClick={this.props.closeForm}>
-        <i className="material-icons">cancel</i>
-      </button>
+      <form className="form">
+        <button className="close-btn" onClick={this.props.closeForm}>
+          <i className="material-icons">cancel</i>
+        </button>
+        <h2>Add Book</h2>
         <label>
           Title:
-          <input
-            type="text"
-            id="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-            placeholder="Enter title"
-          />
         </label>
+        <input
+          type="text"
+          id="title"
+          value={this.state.title}
+          onChange={this.handleChange}
+          placeholder="Enter title"
+        />
+        <br />
         <label>
           Author:
-          <input
-            type="text"
-            id="author"
-            value={this.state.author}
-            onChange={this.handleChange}
-            placeholder="Enter author"
-          />
         </label>
+        <input
+          type="text"
+          id="author"
+          value={this.state.author}
+          onChange={this.handleChange}
+          placeholder="Enter author"
+        />
+        <br />
         <label>
           Year:
-          <input
-            type="text"
-            id="year"
-            value={this.state.year}
-            onChange={this.handleChange}
-            placeholder="Enter year"
-          />
         </label>
+        <input
+          type="text"
+          id="year"
+          value={this.state.year}
+          onChange={this.handleChange}
+          placeholder="Enter year"
+        />
         <button className="submit-btn" onClick={this.handleSubmit}>
           <i className="material-icons">library_add_check</i>
         </button>
