@@ -41,14 +41,14 @@ class Container extends React.Component {
           author: "Harper Lee",
           year: "1960",
           id: 2,
-          color: "var(--orange)",
+          color: "var(--light-green)",
         },
         {
           title: "The Tortilla Curtain",
           author: "T.C. Boyle",
           year: "1995",
           id: 3,
-          color: "var(--light-green)",
+          color: "var(--orange)",
         },
       ],
       showModal: false,
@@ -71,28 +71,32 @@ class Container extends React.Component {
     this.setState({ showModal: false });
   }
 
+  setColor( array ) {
+    const colors = {
+      orange: "var(--orange)",
+      blue: "var(--light-blue)",
+      green: "var(--light-green)",
+    };
+    array.forEach((item) => {
+      let i = array.indexOf(item);
+      if (i % 3 === 0) {
+        item.color = colors.blue;
+      } else if (i % 3 === 1) {
+        item.color = colors.green;
+      } else if (i % 3 === 2) {
+        item.color = colors.orange;
+      }
+    });
+    return array;
+  }
+
   // add the info from the form to the books array in the state
   addBook( book ) {
     const { books, lastID } = this.state;
     const newID = lastID + 1;
     book.id = newID;
     let updatedBooks = [...books, book];
-    const colors = {
-      orange: "var(--orange)",
-      blue: "var(--light-blue)",
-      green: "var(--light-green)",
-    }
-    updatedBooks.forEach((book) => {
-      let i = updatedBooks.indexOf(book);
-      if (i % 3 === 0) {
-        book.color = colors.blue;
-      } else if (i % 3 === 1) {
-        book.color = colors.orange;
-      } else if (i % 3 === 2) {
-        book.color = colors.green;
-      }
-    });
-    this.setState({ books: updatedBooks, lastID: newID });
+    this.setState({ books: this.setColor( updatedBooks ), lastID: newID });
   }
 
   deleteBook( book ) {
@@ -104,17 +108,19 @@ class Container extends React.Component {
         booksToKeep.push(books[i]);
       }
     };
-    this.setState({ books: booksToKeep });
+    this.setState({ books: this.setColor( booksToKeep ) });
   }
 
   render() {
     const { books } = this.state;
 
     return (
-      <div>
-        <button className="add-btn" onClick={this.handleOpenModal}>
-          <i className="material-icons">add_circle_outline</i>
-        </button>
+      <div className="container">
+        <div className="button-banner">
+          <button className="add-btn" onClick={this.handleOpenModal}>
+            <i className="material-icons">library_add</i>
+          </button>
+        </div>
         <ReactModal
            isOpen={this.state.showModal}
         >

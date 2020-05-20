@@ -81,7 +81,7 @@ class Form extends React.Component {
           />
         </label>
         <button className="submit-btn" onClick={this.handleSubmit}>
-          <i className="material-icons">save</i>
+          <i className="material-icons">library_add_check</i>
         </button>
       </form>
     );

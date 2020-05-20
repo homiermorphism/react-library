@@ -1,5 +1,6 @@
 :root {
   --beige: #fcfaee;
+  --beige-opaque: rgba(252, 250, 238,0.5);
   --orange: #c45528;
   --light-blue: #7ab2e2;
   --light-blue-opaque: rgba(122,178,226,0.65);
@@ -7,6 +8,8 @@
   --light-green: #a09f11;
   --light-green-opaque: rgba(160,159,17,0.5);
   --brown: #5f4a11;
+  --brown-opaque: rgba(95,74,17, 0.2);
+  --light-brown: #654321;
 }
 
 body::after {
@@ -30,6 +33,7 @@ body::after {
   outline: 3px solid var(--beige);
   outline-offset: -10px;
   font-family: 'Satisfy', cursive;
+  box-shadow: 0 7px 20px 1px rgba(95,74,17,0.25);
   font-size: 120%;
 }
 
@@ -39,14 +43,35 @@ body::after {
   color: white;
   background-color: var(--dark-green);
   position: absolute;
-  bottom: 5px;
+  bottom: 0;
   right: 0;
   width: 100%;
+  font-family: 'Satisfy', cursive;
+}
+
+.button-banner {
+  display: inline-flex;
+  margin-top: 5px;
+  background-color: var(--beige);
+  outline: 3px solid var(--brown);
+  outline-offset: -10px;
+  padding: 12px;
+  box-shadow: 0 7px 20px 1px rgba(95,74,17,0.25);
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(3, 30%);
+  grid-template-columns: repeat(4, 20%);
+  grid-gap: 25px;
+  position: absolute;
+  overflow: auto;
+  height: auto;
+  max-height: 70vh;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  padding: 2%;
+  border-radius: 10px;
+  width: 95vw;
 }
 
 [class*="btn"] {
@@ -61,5 +86,21 @@ body::after {
 
 [class*="btn"]:hover {
   cursor: pointer;
-  box-shadow: 0 7px 20px 1px rgba(100, 28, 2, 0.5);
+  box-shadow: 0 5px 20px 2px var(--brown-opaque);
+}
+
+.material-icons {
+  color: var(--beige);
+}
+
+.close-btn {
+  float: right;
+}
+
+.card-btn:hover {
+  box-shadow: 0 0 20px 2px var(--beige-opaque);
+}
+
+ul {
+  list-style: none;
 }
