@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 
 import { Card } from './cards';
 import { Form } from './form';
+import { ChangeStatus } from './util';
 
 class Header extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class Container extends React.Component {
           year: "1937",
           id: 1,
           color: "var(--light-blue)",
+          status: "read",
         },
         {
           title: "How To Kill a Mockingbird",
@@ -42,6 +44,7 @@ class Container extends React.Component {
           year: "1960",
           id: 2,
           color: "var(--light-green)",
+          status: "unread",
         },
         {
           title: "The Tortilla Curtain",
@@ -49,13 +52,15 @@ class Container extends React.Component {
           year: "1995",
           id: 3,
           color: "var(--orange)",
+          status: "in progress",
         },
         {
           title: "Ender's Game",
           author: "Orson Scott Card",
           year: "1985",
           id: 4,
-          color: "var(--light-blue)"
+          color: "var(--light-blue)",
+          status: "read",
         },
       ],
       showModal: false,
@@ -64,6 +69,7 @@ class Container extends React.Component {
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.updateStatus = this.updateStatus.bind(this);
     this.addBook = this.addBook.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
 
@@ -95,6 +101,19 @@ class Container extends React.Component {
       }
     });
     return array;
+  }
+
+  updateStatus( id, status ) {
+    const { books } = this.state;
+    var newStatus = ChangeStatus(status);
+    var updatedBooks = books;
+
+    for (var i=0; i < updatedBooks.length; i++) {
+      if (id === updatedBooks[i].id) {
+        updatedBooks[i].status = newStatus;
+      }
+    };
+    this.setState({ books: updatedBooks });
   }
 
   // add the info from the form to the books array in the state
@@ -148,6 +167,8 @@ class Container extends React.Component {
               author={book.author}
               year={book.year}
               deleteBook={this.deleteBook}
+              status={book.status}
+              updateStatus={this.updateStatus}
             />)}
         </ul>
       </div>

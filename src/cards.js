@@ -2,12 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Container } from './index';
+import { SetStatusIcon } from './util';
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
 
+    this.updateStatus = this.updateStatus.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
+  }
+
+  updateStatus() {
+    this.props.updateStatus( this.props.id, this.props.status );
   }
 
   deleteBook() {
@@ -16,6 +22,8 @@ class Card extends React.Component {
       title: this.props.title,
       author: this.props.author,
       year: this.props.year,
+      color: this.props.color,
+      status: this.props.status,
     };
     this.props.deleteBook( book );
   }
@@ -43,16 +51,14 @@ class Card extends React.Component {
 
     const listStyle = {
       color: "var(--brown)",
-      marginLeft: "-20px",
+      marginBottom: "5px",
       listStyleType: "none",
     }
 
     const buttonStyle = {
       backgroundColor: this.props.color,
       border: "2px solid " + this.props.color,
-      position: "absolute",
-      bottom: "15px",
-      right: "15px",
+      margin: "2px",
     };
 
     return (
@@ -63,9 +69,14 @@ class Card extends React.Component {
           <li id={"author"+this.props.id}><b>Written By</b> {this.props.author}</li>
           <li id={"year"+this.props.id}><b>In The Year</b> {this.props.year}</li>
         </ul>
-        <button className="card-btn" style={buttonStyle} onClick={this.deleteBook}>
-          <i className="material-icons md-18">delete</i>
-        </button>
+        <div className="card-buttons">
+          <button className="card-btn" style={buttonStyle} onClick={this.updateStatus}>
+            <i className="material-icons md-18">{SetStatusIcon( this.props.status )}</i>
+          </button>
+          <button className="card-btn" style={buttonStyle} onClick={this.deleteBook}>
+            <i className="material-icons md-18">delete</i>
+          </button>
+        </div>
       </div>
     );
   }
