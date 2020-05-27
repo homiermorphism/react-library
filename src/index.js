@@ -138,6 +138,12 @@ class Container extends React.Component {
     this.setState({ books: this.setColor( booksToKeep ) });
   }
 
+  handleDropdown(e) {
+    let options = e.target.parentNode.getElementsByTagName('ul')[0];
+    options.classList.toggle('show-dropdown');
+    options.classList.toggle('hide-dropdown');
+  }
+
   render() {
     const { books } = this.state;
 
@@ -147,6 +153,14 @@ class Container extends React.Component {
           <button className="add-btn" onClick={this.handleOpenModal}>
             <i className="material-icons">library_add</i>
           </button>
+          <button className="title-sort-btn" onClick={this.handleDropdown}>
+            Sort By:
+          </button>
+          <ul className="hide-dropdown">
+            <li> Title A-Z </li>
+            <li> Author A-Z </li>
+            <li> Year A-Z </li>
+          </ul>
         </div>
         <ReactModal
            isOpen={this.state.showModal}

@@ -78,7 +78,6 @@ body::after {
 	width: 40px;
 	height: 40px;
   display: flex;
-  justify-content: center;
   background-color: var(--brown);
   border: 2px solid var(--brown);
 }
@@ -128,4 +127,29 @@ input[type="text"] {
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+
+/* DROPDOWN STYLING */
+
+.hide-dropdown {
+  display: none;
+}
+
+.show-dropdown {
+  display: inline;
+}
+
+.dropdown-menu {
+  position: relative;
+  font-family: Arial;
+  width: 170px;
+  margin: 0px 10px;
+}
+
+.dropdown-title {
+  width: 100%;
+}
+
+.dropdown-item {
+  width: 100%;
 }
