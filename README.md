@@ -18,4 +18,12 @@ Uses the following:
 
 2. More form options (read/in progress/unread, rating, etc.)
 
-3. Sorting
+3. Sorting (done)
+
+4. Reverse sorting
+
+5. Clear library button
+
+6. Favorite a book
+
+7. Animations in CSS (when adding a book, when changing the status)
