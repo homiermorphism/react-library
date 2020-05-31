@@ -72,10 +72,10 @@ class Container extends React.Component {
     this.updateStatus = this.updateStatus.bind(this);
     this.addBook = this.addBook.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
+    this.handleSorting = this.handleSorting.bind(this);
     this.sortTitle = this.sortTitle.bind(this);
     this.sortAuthor = this.sortAuthor.bind(this);
     this.sortYear = this.sortYear.bind(this);
-    console.log(this.state.books);
 
     Modal.setAppElement('#content');
   }
@@ -148,22 +148,35 @@ class Container extends React.Component {
     options.classList.toggle('hide-dropdown');
   }
 
+  handleSorting(e) {
+    var updatedBooks = [];
+    if (e.target.innerHTML.includes('itle')) {
+      updatedBooks = this.sortTitle();
+    } else if (e.target.innerHTML.includes('uthor')) {
+      updatedBooks = this.sortAuthor();
+    } else if (e.target.innerHTML.includes('ear')) {
+      updatedBooks = this.sortYear();
+    }
+    this.setColor(updatedBooks);
+    this.setState({ books: updatedBooks });
+  }
+
   sortTitle() {
     var booksCopy = [...this.state.books];
     booksCopy.sort((a,b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1);
-    this.setState({ books: booksCopy });
+    return booksCopy;
   }
 
   sortAuthor() {
     var booksCopy = [...this.state.books];
     booksCopy.sort((a,b) => (a.author.toLowerCase() > b.author.toLowerCase()) ? 1 : -1);
-    this.setState({ books: booksCopy });
+    return booksCopy;
   }
 
   sortYear() {
     var booksCopy = [...this.state.books];
     booksCopy.sort((a,b) => (a.year - b.year));
-    this.setState({ books: booksCopy });
+    return booksCopy;
   }
 
   render() {
@@ -179,9 +192,9 @@ class Container extends React.Component {
             <i className="material-icons">sort_by_alpha</i>
           </button>
           <ul id="sort-dropdown" className="hide-dropdown">
-            <li onClick={this.sortTitle}> Title </li>
-            <li onClick={this.sortAuthor}> Author </li>
-            <li onClick={this.sortYear}> Year </li>
+            <li onClick={this.handleSorting}> Title </li>
+            <li onClick={this.handleSorting}> Author </li>
+            <li onClick={this.handleSorting}> Year </li>
           </ul>
         </div>
         <ReactModal
