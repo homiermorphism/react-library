@@ -14,16 +14,20 @@ Uses the following:
 
 # Coming Soon
 
-1. Edit a book
+- Edit a book
 
-2. More form options (read/in progress/unread, rating, etc.)
+- More form options (read/in progress/unread, rating, etc.)
 
-3. Sorting (done)
+- Reverse sorting
 
-4. Reverse sorting
+- Clear library button
 
-5. Clear library button
+- Favorite a book
 
-6. Favorite a book
+- Animations in CSS (when adding a book, when changing the status)
 
-7. Animations in CSS (when adding a book, when changing the status)
+# Needs Fixing
+
+- Styling of dropdown
+
+- Status button on form
