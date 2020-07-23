@@ -58,7 +58,6 @@ class Card extends React.Component {
     const buttonStyle = {
       backgroundColor: this.props.color,
       border: "2px solid " + this.props.color,
-      margin: "2px",
     };
 
     return (
