@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Container } from './index';
+import { SetStatusIcon } from './util';
+import { ChangeStatus } from './util';
 
 class Form extends React.Component {
   constructor(props) {
@@ -10,10 +12,12 @@ class Form extends React.Component {
       title: "",
       author: "",
       year: "",
+      status: "unread",
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateStatus = this.updateStatus.bind(this);
   }
 
   handleChange(event) {
@@ -29,11 +33,12 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { title, author, year } = this.state;
+    const { title, author, year, status } = this.state;
     const book = {
       title: title,
       author: author,
       year: year,
+      status: status,
     };
     if (book.title==="" || book.author==="") {
       alert("Title and author are both required.");
@@ -42,6 +47,12 @@ class Form extends React.Component {
       this.props.addBook( book );
       this.props.closeForm();
     }
+  }
+
+  updateStatus() {
+    var newStatus = ChangeStatus( this.state.status );
+    this.setState({ status: newStatus });
+    return newStatus;
   }
 
   render() {
@@ -83,6 +94,14 @@ class Form extends React.Component {
           onChange={this.handleChange}
           placeholder="Enter year"
         />
+        <br />
+        <label>
+          Status:
+        </label>
+        <button className="submit-btn" onClick={this.updateStatus}>
+          <i className="material-icons">{SetStatusIcon( this.state.status )}</i>
+        </button>
+        <br />
         <button className="submit-btn" onClick={this.handleSubmit}>
           <i className="material-icons">library_add_check</i>
         </button>
